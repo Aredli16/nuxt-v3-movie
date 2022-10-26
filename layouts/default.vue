@@ -1,58 +1,60 @@
 <template>
-  <header>
-    <nav class="navbar navbar-dark">
-      <div class="container">
-        <NuxtLink class="navbar-brand" to="/">Nuxt<span>Movie</span>
-        </NuxtLink>
-        <form>
-          <input class="form-control rounded-5 placeholder-wave" placeholder="Rechercher" type="text">
-        </form>
-      </div>
-    </nav>
+  <div>
+    <header>
+      <nav class="navbar navbar-dark">
+        <div class="container">
+          <NuxtLink class="navbar-brand" to="/">Nuxt<span>Movie</span>
+          </NuxtLink>
+          <form>
+            <input class="form-control rounded-5 placeholder-wave" placeholder="Rechercher" type="text">
+          </form>
+        </div>
+      </nav>
 
-    <!-- Display on little devices-->
-    <nav class="bottom-menu navbar d-block d-lg-none  position-fixed">
-      <div class="d-flex align-items-center justify-content-center gap-5 ">
-        <NuxtLink class="nav-link" to="/">
-          <Icon name="material-symbols:home-rounded" size="2.7em"></Icon>
-        </NuxtLink>
-        <NuxtLink class="nav-link" to="/movies">
-          <Icon name="ic:baseline-local-movies" size="2.7em"></Icon>
-        </NuxtLink>
-        <NuxtLink class="nav-link" to="/series">
-          <Icon name="material-symbols:live-tv-outline" size="2.7em"></Icon>
-        </NuxtLink>
-      </div>
-    </nav>
-  </header>
-
-  <main class="container-fluid">
-    <div class="row">
-      <div class="col-lg-1 d-none d-lg-block">
-        <div class="sidebar position-fixed col-md-1 d-flex flex-column gap-5 ">
+      <!-- Display on little devices-->
+      <nav class="bottom-menu navbar d-block d-lg-none  position-fixed">
+        <div class="d-flex align-items-center justify-content-center gap-5 ">
           <NuxtLink class="nav-link" to="/">
-            <Icon name="material-symbols:home-rounded" size="50"></Icon>
-            <span class="nav-link-title">Accueil</span>
+            <Icon name="material-symbols:home-rounded" size="2.7em"></Icon>
           </NuxtLink>
           <NuxtLink class="nav-link" to="/movies">
-            <Icon name="ic:baseline-local-movies" size="50"></Icon>
-            <span class="nav-link-title">Films</span>
+            <Icon name="ic:baseline-local-movies" size="2.7em"></Icon>
           </NuxtLink>
           <NuxtLink class="nav-link" to="/series">
-            <Icon name="material-symbols:live-tv-outline" size="50"></Icon>
-            <span class="nav-link-title">Series</span>
+            <Icon name="material-symbols:live-tv-outline" size="2.7em"></Icon>
           </NuxtLink>
         </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-lg-1 d-none d-lg-block">
+          <div class="sidebar position-fixed col-md-1 d-flex flex-column gap-5 ">
+            <NuxtLink class="nav-link" to="/">
+              <Icon name="material-symbols:home-rounded" size="50"></Icon>
+              <span class="nav-link-title">Accueil</span>
+            </NuxtLink>
+            <NuxtLink class="nav-link" to="/movies">
+              <Icon name="ic:baseline-local-movies" size="50"></Icon>
+              <span class="nav-link-title">Films</span>
+            </NuxtLink>
+            <NuxtLink class="nav-link" to="/series">
+              <Icon name="material-symbols:live-tv-outline" size="50"></Icon>
+              <span class="nav-link-title">Series</span>
+            </NuxtLink>
+          </div>
+        </div>
+        <section class="col-lg-11">
+          <NuxtPage/>
+        </section>
       </div>
-      <section class="col-lg-11">
-        <NuxtPage/>
-      </section>
-    </div>
-  </main>
+    </main>
 
-  <footer>
+    <footer>
 
-  </footer>
+    </footer>
+  </div>
 </template>
 
 <style lang="scss" scoped>

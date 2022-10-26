@@ -1,32 +1,32 @@
 <template>
-  <section id="hero" class="position-relative mt-3">
-    <img :src="`https://image.tmdb.org/t/p/original/${randomHeroMovie['backdrop_path']}`" alt="backdrop-home"
-         class="rounded-4 w-100">
-    <div class="hero-detail position-absolute top-50  translate-middle-y d-none d-lg-block">
-      <h1>{{ randomHeroMovie["title"] }}</h1>
-      <p class="fst-italic">
-        {{ randomHeroMovie["tagline"] }}</p>
-      <button class="btn btn-danger">
-        <Icon name="material-symbols:play-arrow"/>
-        Voir le trailer
-      </button>
-    </div>
+  <div>
+    <section id="hero" class="position-relative mt-3">
+      <img :src="`https://image.tmdb.org/t/p/original/${randomHeroMovie['backdrop_path']}`" alt="backdrop-home"
+           class="rounded-4 w-100">
+      <div class="hero-detail position-absolute top-50  translate-middle-y d-none d-lg-block">
+        <h1>{{ randomHeroMovie["title"] }}</h1>
+        <p class="fst-italic">
+          {{ randomHeroMovie["tagline"] }}</p>
+        <button class="btn btn-danger">
+          <Icon name="material-symbols:play-arrow"/>
+          Voir le trailer
+        </button>
+      </div>
 
-    <a class="position-absolute start-50 top-50 translate-middle text-white d-block d-lg-none">
-      <Icon name="ic:baseline-play-circle" size="50">a</Icon>
-    </a>
-  </section>
+      <a class="position-absolute start-50 top-50 translate-middle text-white d-block d-lg-none">
+        <Icon name="ic:baseline-play-circle" size="50"></Icon>
+      </a>
+    </section>
 
-  <MediaComponent id="popularMovie" :medias="popularMovie['results']" section-title="Les films les plus populaires"/>
-  <MediaComponent id="popularSeries" :medias="popularSeries['results']"
-                  section-title="Les series les plus populaires"/>
-
+    <MediaComponent id="popularMovie" :medias="popularMovie['results']" section-title="Les films les plus populaires"/>
+    <MediaComponent id="popularSeries" :medias="popularSeries['results']"
+                    section-title="Les series les plus populaires"/>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import MediaComponent from "~/pages/MediaComponent.vue";
 
-const {data: randomHeroMovie} = useFetch('/api/tmdb', {
+const {data: randomHeroMovie} = await useFetch('/api/tmdb', {
   params: {
     media: 'movie',
     categorie: 'popular',
@@ -34,14 +34,14 @@ const {data: randomHeroMovie} = useFetch('/api/tmdb', {
   }
 })
 
-const {data: popularMovie} = useFetch('/api/tmdb', {
+const {data: popularMovie} = await useFetch('/api/tmdb', {
   params: {
     media: 'movie',
     categorie: 'popular'
   }
 })
 
-const {data: popularSeries} = useFetch('/api/tmdb', {
+const {data: popularSeries} = await useFetch('/api/tmdb', {
   params: {
     media: 'tv',
     categorie: 'popular'

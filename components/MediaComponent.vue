@@ -14,7 +14,10 @@
 
     <div :id="id" class="carousel-img d-flex">
       <div v-for="(media, index) in medias" :key="index">
-        <img :src="`https://image.tmdb.org/t/p/original/${media['poster_path']}`" alt="poster" class="mb-4 me-3">
+        <div class="mb-4 me-3">
+          <img :src="`https://image.tmdb.org/t/p/original/${media['poster_path']}`" alt="poster"
+               @click="navigate(media['id'])">
+        </div>
       </div>
     </div>
   </section>
@@ -45,10 +48,18 @@ function scrollLeft() {
   document.getElementById(props.id).scrollLeft -= 1000
 }
 
+function navigate(id) {
+  return navigateTo({
+    name: 'movies-id',
+    params: {
+      id: id
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
-@import "assets/style/colors";
+@import "../assets/style/colors";
 
 .section-title {
   background-color: $dark-2;
@@ -76,6 +87,12 @@ function scrollLeft() {
   img {
     width: auto;
     height: 400px;
+    cursor: pointer;
+    transition: all linear 100ms;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 

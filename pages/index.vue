@@ -1,22 +1,26 @@
 <template>
-  <main class="container px-0 my-5">
-    <section id="hero" class="mt-5">
-      <img :src="`https://image.tmdb.org/t/p/original/${randomHeroMovie['backdrop_path']}`" alt="backdrop-home">
-      <div class="hero-detail d-none d-md-block">
-        <h1>{{ randomHeroMovie["title"] }}</h1>
-        <p class="fst-italic">
-          {{ randomHeroMovie["tagline"] }}</p>
-        <button class="btn btn-danger">
-          <Icon name="material-symbols:play-arrow"/>
-          Voir le trailer
-        </button>
-      </div>
-    </section>
+  <section id="hero" class="position-relative mt-3">
+    <img :src="`https://image.tmdb.org/t/p/original/${randomHeroMovie['backdrop_path']}`" alt="backdrop-home"
+         class="rounded-4 w-100">
+    <div class="hero-detail position-absolute top-50  translate-middle-y d-none d-lg-block">
+      <h1>{{ randomHeroMovie["title"] }}</h1>
+      <p class="fst-italic">
+        {{ randomHeroMovie["tagline"] }}</p>
+      <button class="btn btn-danger">
+        <Icon name="material-symbols:play-arrow"/>
+        Voir le trailer
+      </button>
+    </div>
 
-    <MediaComponent id="popularMovie" :medias="popularMovie['results']" section-title="Les films les plus populaires"/>
-    <MediaComponent id="popularSeries" :medias="popularSeries['results']"
-                    section-title="Les series les plus populaires"/>
-  </main>
+    <a class="position-absolute start-50 top-50 translate-middle text-white d-block d-lg-none">
+      <Icon name="ic:baseline-play-circle" size="50">a</Icon>
+    </a>
+  </section>
+
+  <MediaComponent id="popularMovie" :medias="popularMovie['results']" section-title="Les films les plus populaires"/>
+  <MediaComponent id="popularSeries" :medias="popularSeries['results']"
+                  section-title="Les series les plus populaires"/>
+
 </template>
 
 <script lang="ts" setup>
@@ -47,12 +51,8 @@ const {data: popularSeries} = useFetch('/api/tmdb', {
 
 <style lang="scss" scoped>
 #hero {
-  position: relative;
-
   img {
     filter: brightness(50%);
-    border-radius: 10px;
-    width: 100%;
     max-height: 60vh;
     object-fit: cover;
     object-position: center;
@@ -60,6 +60,11 @@ const {data: popularSeries} = useFetch('/api/tmdb', {
 
   h1 {
     font-size: 5.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 
   p::before {
@@ -68,10 +73,7 @@ const {data: popularSeries} = useFetch('/api/tmdb', {
   }
 
   .hero-detail {
-    position: absolute;
-    top: 50%;
-    left: 50px;
-    transform: translateY(-50%);
+    left: 50px
   }
 }
 

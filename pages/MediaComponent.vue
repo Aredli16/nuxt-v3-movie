@@ -2,7 +2,7 @@
   <section class="mt-5">
     <div class="section-title d-flex justify-content-between align-items-center py-3 px-4 mb-5">
       <h2>{{ sectionTitle }}</h2>
-      <div>
+      <div class="d-flex">
         <span class="carousel-controller" @click="scrollLeft">
           <Icon name="material-symbols:arrow-back-ios"></Icon>
         </span>

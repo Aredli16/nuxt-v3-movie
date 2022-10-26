@@ -2,8 +2,7 @@
   <header>
     <nav class="navbar navbar-dark">
       <div class="container">
-        <NuxtLink class="navbar-brand" to="/">
-          Nuxt<span>Movie</span>
+        <NuxtLink class="navbar-brand" to="/">Nuxt<span>Movie</span>
         </NuxtLink>
         <form>
           <input class="form-control rounded-5 placeholder-wave" placeholder="Rechercher" type="text">
@@ -45,7 +44,7 @@
 
 .sidebar {
   top: 50%;
-  left: 30px;
+  left: 50px;
   transform: translateY(-50%);
   color: #a3a3a3;
 

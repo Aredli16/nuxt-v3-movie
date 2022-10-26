@@ -1,13 +1,12 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+    runtimeConfig: {
+        TMDB_API_KEY: process.env.TMDB_API_KEY
+    },
     css: [
         'bootstrap/dist/css/bootstrap.min.css',
         '@/assets/style/default.scss'
     ],
-    plugins: [{
-        src: 'bootstrap/dist/js/bootstrap.bundle.js',
-        mode: "client"
-    }],
     modules: [
         'nuxt-icon'
     ],

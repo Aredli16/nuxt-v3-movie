@@ -8,6 +8,12 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.12"
+    "@nuxtjs/google-fonts": "^3.0.0-1",
+    "nuxt": "3.0.0-rc.12",
+    "nuxt-icon": "^0.1.7",
+    "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.2"
   }
 }

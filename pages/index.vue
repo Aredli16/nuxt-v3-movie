@@ -1,5 +1,4 @@
 <template>
-  <div>
-    <NuxtWelcome />
+  <div class="container">
   </div>
 </template>

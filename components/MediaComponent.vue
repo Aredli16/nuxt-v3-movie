@@ -37,6 +37,10 @@ const props = defineProps({
   medias: {
     type: Object,
     required: true
+  },
+  navigate: {
+    type: String,
+    required: true
   }
 })
 
@@ -50,7 +54,7 @@ function scrollLeft() {
 
 function navigate(id) {
   return navigateTo({
-    name: 'movies-id',
+    name: props.navigate,
     params: {
       id: id
     }

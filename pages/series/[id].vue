@@ -1,6 +1,6 @@
 <template>
   <div class="mt-3">
-    <section :style="{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie['backdrop_path']})`}"
+    <section :style="{backgroundImage: `url(https://image.tmdb.org/t/p/original/${serie['backdrop_path']})`}"
              class="movie-banner position-relative">
       <div class="position-absolute top-50 start-50 translate-middle">
         <NuxtLink :external="true" class="text-white" to="#trailer">
@@ -8,7 +8,7 @@
         </NuxtLink>
       </div>
       <div class="movie-banner-text position-absolute">
-        <h1 class="display-1">{{ movie['title'] }}</h1>
+        <h1 class="display-1">{{ serie['title'] }}</h1>
         <div class="rating mb-2">
           <Icon name="ri:star-s-fill"></Icon>
           <Icon name="ri:star-s-fill"></Icon>
@@ -17,12 +17,12 @@
           <Icon name="ri:star-s-line"></Icon>
         </div>
         <div class="d-flex">
-          <div v-for="(genre, index) in movie['genres']" :key="index" class="me-2">
+          <div v-for="(genre, index) in serie['genres']" :key="index" class="me-2">
             <span class="fst-italic">{{ genre["name"] }}</span>
           </div>
         </div>
         <p class="mt-3">
-          {{ movie['overview'] }}
+          {{ serie['overview'] }}
         </p>
       </div>
     </section>
@@ -53,7 +53,7 @@
 
     <section id="production">
       <div class="d-flex flex-wrap justify-content-center align-items-baseline">
-        <div v-for="(company, index) in movie['production_companies']" :key="index" class="mx-auto">
+        <div v-for="(company, index) in serie['production_companies']" :key="index" class="mx-auto">
           <img v-if="company['logo_path']" :src="`https://image.tmdb.org/t/p/original/${company['logo_path']}`"
                alt="company">
           <p v-else>{{ company['name'] }}</p>
@@ -66,17 +66,18 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const {data: movie} = await useFetch('/api/tmdb', {
+const {data: serie} = await useFetch('/api/tmdb', {
   params: {
-    media: "movie",
+    media: "tv",
     categorie: route.params.id
   },
   initialCache: false
 })
 
+
 const {data: credits} = await useFetch('/api/tmdb', {
   params: {
-    media: "movie",
+    media: "tv",
     categorie: route.params.id,
     optional: "credits"
   },
@@ -85,7 +86,7 @@ const {data: credits} = await useFetch('/api/tmdb', {
 
 const {data: videos} = await useFetch('/api/tmdb', {
   params: {
-    media: "movie",
+    media: "tv",
     categorie: route.params.id,
     optional: "videos"
   },

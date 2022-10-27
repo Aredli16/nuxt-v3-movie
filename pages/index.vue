@@ -5,7 +5,7 @@
            class="rounded-4 w-100">
       <div class="hero-detail position-absolute top-50 translate-middle-y d-none d-lg-block">
         <h1>{{ randomHeroMovie["title"] }}</h1>
-        <p class="fst-italic">
+        <p v-if="randomHeroMovie['tagline']" class="fst-italic">
           {{ randomHeroMovie["tagline"] }}</p>
         <NuxtLink :external="true" :to="{name: 'movies-id', params: {id: randomHeroMovie['id']}, hash: '#trailer'}"
                   class="btn btn-danger">
@@ -19,8 +19,9 @@
       </a>
     </section>
 
-    <MediaComponent id="popularMovie" :medias="popularMovie['results']" section-title="Les films les plus populaires"/>
-    <MediaComponent id="popularSeries" :medias="popularSeries['results']"
+    <MediaComponent id="popularMovie" :medias="popularMovie['results']" navigate="movies-id"
+                    section-title="Les films les plus populaires"/>
+    <MediaComponent id="popularSeries" :medias="popularSeries['results']" navigate="series-id"
                     section-title="Les series les plus populaires"/>
   </div>
 </template>

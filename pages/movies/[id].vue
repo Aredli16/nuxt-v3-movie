@@ -16,8 +16,44 @@
         </div>
         <div class="d-flex">
           <div v-for="(genre, index) in movie['genres']" :key="index" class="me-2">
-            {{ genre["name"] }}
+            <span class="fst-italic">{{ genre["name"] }}</span>
           </div>
+        </div>
+        <p class="mt-3">
+          {{ movie['overview'] }}
+        </p>
+      </div>
+    </section>
+
+
+    <section id="casting" class="mt-3">
+      <h1 class="section-title">Casting</h1>
+      <div id="cast-carousel" class="d-flex">
+        <div v-for="(cast, index) in credits['cast']" :key="index" class="me-3 mb-1">
+          <img v-if="cast['profile_path']" :src="`https://image.tmdb.org/t/p/original/${cast['profile_path']}`"
+               alt="cast" class="w-auto">
+          <p class="mt-2">{{ cast['name'] }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section v-if="videos['results'][0]" id="trailer" class="mt-3">
+      <h1 class="section-title">Trailer</h1>
+      <div class="text-center">
+        <iframe :src="`http://www.youtube.com/embed/${videos['results'][0]['key']}`" height="700"
+                type="text/html"
+                width="70%"/>
+      </div>
+    </section>
+
+    <hr>
+
+    <section id="production">
+      <div class="d-flex flex-wrap justify-content-center align-items-baseline">
+        <div v-for="(company, index) in movie['production_companies']" :key="index" class="mx-auto">
+          <img v-if="company['logo_path']" :src="`https://image.tmdb.org/t/p/original/${company['logo_path']}`"
+               alt="company">
+          <p v-else>{{ company['name'] }}</p>
         </div>
       </div>
     </section>
@@ -32,11 +68,32 @@ const {data: movie} = await useFetch('/api/tmdb', {
     media: "movie",
     categorie: route.params.id
   },
-  key: route.params.id.toString()
+  initialCache: false
+})
+
+
+const {data: credits} = await useFetch('/api/tmdb', {
+  params: {
+    media: "movie",
+    categorie: route.params.id,
+    optional: "credits"
+  },
+  initialCache: false
+})
+
+const {data: videos} = await useFetch('/api/tmdb', {
+  params: {
+    media: "movie",
+    categorie: route.params.id,
+    optional: "videos"
+  },
+  initialCache: false
 })
 </script>
 
 <style lang="scss" scoped>
+@import "assets/style/colors";
+
 .movie-banner {
   height: 70vh;
   background-color: rgba(0 0 0 / 50%);
@@ -53,12 +110,47 @@ const {data: movie} = await useFetch('/api/tmdb', {
   }
 
   .movie-banner-text {
-    bottom: 150px;
+    bottom: 80px;
     left: 100px;
+    right: 100px;
   }
 
   .rating {
     color: #ffdf1a;
+  }
+}
+
+.section-title {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: $dark-2;
+}
+
+#casting {
+  #cast-carousel {
+    overflow-x: scroll;
+    scrollbar-width: auto;
+    scrollbar-color: $red;
+
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $red;
+      border-radius: 10px;
+    }
+
+    img {
+      height: 400px;
+    }
+  }
+}
+
+#production {
+  img {
+    width: auto;
+    height: 50px;
   }
 }
 </style>

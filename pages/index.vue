@@ -1,16 +1,17 @@
 <template>
   <div>
-    <section id="hero" class="position-relative mt-3">
+    <section v-if="randomHeroMovie['backdrop_path']" id="hero" class="position-relative mt-3">
       <img :src="`https://image.tmdb.org/t/p/original/${randomHeroMovie['backdrop_path']}`" alt="backdrop-home"
            class="rounded-4 w-100">
-      <div class="hero-detail position-absolute top-50  translate-middle-y d-none d-lg-block">
+      <div class="hero-detail position-absolute top-50 translate-middle-y d-none d-lg-block">
         <h1>{{ randomHeroMovie["title"] }}</h1>
         <p class="fst-italic">
           {{ randomHeroMovie["tagline"] }}</p>
-        <button class="btn btn-danger">
+        <NuxtLink :external="true" :to="{name: 'movies-id', params: {id: randomHeroMovie['id']}, hash: '#trailer'}"
+                  class="btn btn-danger">
           <Icon name="material-symbols:play-arrow"/>
           Voir le trailer
-        </button>
+        </NuxtLink>
       </div>
 
       <a class="position-absolute start-50 top-50 translate-middle text-white d-block d-lg-none">

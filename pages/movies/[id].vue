@@ -3,7 +3,9 @@
     <section :style="{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie['backdrop_path']})`}"
              class="movie-banner position-relative">
       <div class="position-absolute top-50 start-50 translate-middle">
-        <Icon name="ic:sharp-play-circle" size="50"></Icon>
+        <NuxtLink :external="true" class="text-white" to="#trailer">
+          <Icon name="ic:sharp-play-circle" size="50"></Icon>
+        </NuxtLink>
       </div>
       <div class="movie-banner-text position-absolute">
         <h1 class="display-1">{{ movie['title'] }}</h1>
@@ -40,6 +42,7 @@
     <section v-if="videos['results'][0]" id="trailer" class="mt-3">
       <h1 class="section-title">Trailer</h1>
       <div class="text-center">
+        <a href="#trailer"></a>
         <iframe :src="`http://www.youtube.com/embed/${videos['results'][0]['key']}`" height="700"
                 type="text/html"
                 width="70%"/>

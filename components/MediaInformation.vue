@@ -9,11 +9,10 @@
     <div class="movie-banner-text position-absolute">
       <h1 class="display-1">{{ media['title'] }}</h1>
       <div class="rating mb-2">
-        <Icon name="ri:star-s-fill"></Icon>
-        <Icon name="ri:star-s-fill"></Icon>
-        <Icon name="ri:star-s-fill"></Icon>
-        <Icon name="ri:star-half-s-line"></Icon>
-        <Icon name="ri:star-s-line"></Icon>
+        <span v-for="index in Math.round(media['vote_average'] / 2)" :key="index"><Icon
+            name="ri:star-s-fill"></Icon></span>
+        <span v-for="index in 5 - Math.round(media['vote_average'] / 2)" :key="index"><Icon
+            name="ri:star-s-line"></Icon></span>
       </div>
       <div class="d-flex">
         <div v-for="(genre, index) in media['genres']" :key="index" class="me-2">

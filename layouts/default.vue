@@ -50,10 +50,6 @@
         </section>
       </div>
     </main>
-
-    <footer>
-
-    </footer>
   </div>
 </template>
 

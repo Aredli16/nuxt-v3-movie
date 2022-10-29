@@ -1,5 +1,5 @@
 <template>
-  <div>
-    Hello from movies !
-  </div>
+  <NuxtLayout name="grid">
+    <MediaGrid categorie="popular" media="movie"></MediaGrid>
+  </NuxtLayout>
 </template>
